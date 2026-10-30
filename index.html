@@ -169,6 +169,7 @@
             background-color: #c97381;
             transform: scale(1.05);
         }
+     
 
         /* ==========================================================================
            SEÇÃO DE CONTATO
@@ -265,25 +266,138 @@
                 <a href="#produtos" class="btn">Ver modelos</a>
             </div>
         </section>
+       
+</div>
+</div>
 
-        <!-- Vitrine de Produtos -->
-        <section id="produtos" class="produtos-container">
-            <h2>Nossos sapatinhos</h2>
+    <! seção produtos   >
+<section id="produtos" class="produtos-container">
+    <h2>Nossos sapatinhos</h2>
+    
+    </div>
+    
+    <div class="grid-produtos">
+        <!-- Produto 1 -->
+        <div class="card-produto">
+            <figure style="margin-bottom: 15px;">
+                <img src="WhatsApp Image 2026-10-22 at 19.52.53.jpeg" alt="sapatinho flora">
+                <figcaption>Sandalinha flora R$ 28,00</figcaption>
+            </figure>
             
-            <div class="grid-produtos">
-                <!-- Produto 1 -->
-                <div class="card-produto">
-                    <figure>
-                        <img src="WhatsApp Image 2026-10-22 at 19.52.53.jpeg" alt="sapatinho flora">
-                        <figcaption>Sandalinha flora R$ 28,00</figcaption>
-                    </figure>
-                    <!-- O botão comprar também direciona direto para o seu WhatsApp para facilitar o pedido -->
-                    <a href="https://wa.me." target="_blank" class="btn-comprar">
-                        Comprar
-                    </a>
-                </div>
+            <!-- Botão Principal de Compra -->
+            <button id="btn-acao-principal" class="btn-comprar" onclick="validarCompra()" style="border: none; cursor: pointer; width: 100%; display: block; margin-bottom: 10px;">Comprar</button>
+
+            
+            <div id="caixa-pagamento" style="display: none; text-align: left; width: 100%; margin-top: 10px; padding: 12px; background-color: #fff9fa; border-radius: 12px; border: 1px solid #fff0f2; box-sizing: border-box;">
+                <h3 style="font-size: 0.95rem; margin-bottom: 8px; color: #5a4b4c;">Escolha a forma de pagamento:</h3>
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.9rem; cursor: pointer; color: #5a4b4c;">
+                    <input type="radio" name="metodo" value="Pix"> Pix
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.9rem; cursor: pointer; color: #5a4b4c;">
+                    <input type="radio" name="metodo" value="Cartão de Crédito"> Cartão de Crédito
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.9rem; cursor: pointer; color: #5a4b4c;">
+                    <input type="radio" name="metodo" value="Boleto Bancário"> Boleto Bancário
+                </label>
             </div>
+        </div>
+    </div>
+</section>
+
+    </div>
+</div>
+<script>
+function validarCompra() {
+    const caixa = document.getElementById('caixa-pagamento');
+    const botao = document.getElementById('btn-acao-principal');
+    
+    // 1º clique: Abre a caixinha se estiver fechada
+    if (!caixa.style.display || caixa.style.display === 'none') {
+        caixa.style.display = 'block';
+        botao.innerText = 'Finalizar Compra';
+        return;
+    }
+    
+    // 2º clique: Valida a opção escolhida
+    const metodoSelecionado = document.querySelector('input[name="metodo"]:checked');
+    
+    if (!metodoSelecionado) {
+        alert('Por favor, escolha uma forma de pagamento antes de finalizar!');
+    } else {
+        alert('Compra realizada com sucesso! Método escolhido: ' + metodoSelecionado.value);
+        
+        // Se for Pix, envia direto para WhatsApp
+        if (metodoSelecionado.value === 'Pix') {
+            window.open('https://wa.me! Quero finalizar a compra da Sandalinha Flora via Pix.', '_blank');
+        }
+        
+        // Reseta o botão e esconde a caixinha
+        caixa.style.display = 'none';
+        botao.innerText = 'Comprar';
+        metodoSelecionado.checked = false;
+    }
+}
+</script>
+        <!-- Bloco do Carrinho  -->
+<div class="container-carrinho">
+  <p id="mensagem-carrinho">Seu carrinho está vazio.</p>
+  
+  <button class="botao-carrinho" onclick="adicionarProduto()">
+    <!-- Ícone de carrinho de compras moderno -->
+    <svg xmlns="http://w3.org" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="margin-right: 8px; vertical-align: middle;">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+    </svg>
+    Adicionar ao Carrinho
+  </button>
+</div>
+
+<!-- Estilo Visual Embutido -->
+<style>
+  .container-carrinho {
+    text-align: center;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  #mensagem-carrinho {
+    font-size: 16px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .botao-carrinho {
+    background-color: #e63946; 
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  .botao-carrinho:hover {
+    background-color: #cb2d3a;
+    transform: translateY(-2px); /* Efeito de subir /
+  }
+  .botao-carrinho:active {
+    transform: translateY(0);
+  }
+</style>
+<!-- Fim do Bloco do Carrinho -->
         </section>
+
+        <!-- Campo de Entrada para o CEP -->
+<div style="margin-bottom: 15px; text-align: center; font-family: sans-serif;">
+  <label for="cep-usuario" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #444;">Calcular Frete:</label>
+  <input type="text" id="cep-usuario" placeholder="Digite seu CEP" style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; width: 140px; text-align: center;">
+  <button type="button" onclick="calcularFrete()" style="padding: 8px 12px; background-color: #333; color: white; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; margin-left: 5px;">Calcular</button>
+  <p id="resultado-frete" style="font-size: 14px; color: #28a745; font-weight: bold; margin-top: 8px; margin-bottom: 0;"></p>
+</div>
+
 
         <!-- Seção de Contato -->
         <section id="contato" class="contato-container">
@@ -299,3 +413,25 @@
                 <!-- Link do Instagram -->
                 <a href="https://www.instagram.com/pontodeamorbb/" target="_blank" class="btn-contato instagram">
                     📸 Seguir no Instagram
+                    <!-- JavaScript adicionado para cumprir as regras do professor -->
+<script>
+    function calcularFrete() {
+        // 1. Variável que captura o valor digitado no campo de entrada
+        var cep = document.getElementById("cep-usuario").value;
+        var elementoResultado = document.getElementById("resultado-frete");
+
+        // 2. Validação básica para checar se o campo não está vazio
+        if (cep.trim() === "") {
+            elementoResultado.style.color = "red";
+            elementoResultado.innerText = "Por favor, digite um CEP.";
+            return;
+        }
+
+        // 3. Cálculo fictício baseado no número do CEP
+        var valorCalculado = (cep.length * 2) + 5;
+
+        // 4. Alteração do conteúdo da página mostrando o resultado
+        elementoResultado.style.color = "#28a745";
+        elementoResultado.innerText = "O valor do frete é: R$ " + valorCalculado.toFixed(2);
+    }
+</script>
